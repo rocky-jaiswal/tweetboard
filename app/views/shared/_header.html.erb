@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="large-12 columns">
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">TweetBoard</a></h1>
+        </li>
+      </ul>
+      <ul class="right">
+        <% if user_signed_in? %>
+          <li class="has-form">
+            <a class="button" href="/users/sign_out">Logout</a>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</div>
