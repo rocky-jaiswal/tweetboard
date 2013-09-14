@@ -5,6 +5,8 @@ gem 'rails', '3.2.14'
 gem 'devise'
 gem 'simple_form'
 gem 'figaro'
+gem 'multi_json'
+gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
 gem 'sqlite3'
 gem 'thin'
 

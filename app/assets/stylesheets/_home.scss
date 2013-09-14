@@ -5,12 +5,26 @@ ul.right {
 }
 
 span.label {
-  margin-bottom: 10px;
-  background-color: #888;
+  margin-right: 5px;
 }
 
-.offer-container {
-  border: 1px solid black;
-  padding: 8px;
-  margin: 5px auto;
+.spaced {
+  margin: 20px 0px;
+}
+
+#add-user {
+  height: 2.0em;
+}
+
+.tweet {
+  p {
+    font-size: 0.8em;
+  }
+  img {
+    float: right;
+  }
+}
+
+.hidden {
+  visibility: hidden;
 }

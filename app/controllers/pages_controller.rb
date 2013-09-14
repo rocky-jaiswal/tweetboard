@@ -1,5 +1,3 @@
-require 'multi_json'
-
 class PagesController < ApplicationController
 
   def login

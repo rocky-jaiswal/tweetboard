@@ -1,31 +1,30 @@
+@import "_variables";
+
 .divider {
   height: 380px;
-  border-right: 1px dashed #ccc;
+  border-right: 1px dashed $gray;
 }
 
 .instructions {
-  background-color: #E7FBE7;
+  background-color: $instructions-color;
   padding: 15px;
   height: 380px;
-  h4, p {
-    color: #2c3e50;
-  }
   .header {
     hr {
-      border: 1px solid #2c3e50;
+      border: 1px solid $header-font-color;
       margin: 2px;
     }
   }
   .body {
-    p {
-      font-style: italic;
-      font-size: 0.9em;
-    }
     h4 {
-      margin: 5px auto;
+      margin: 10px auto;
     }
-    i {
-      margin-right: 10px;
-    }
+  }
+}
+
+.green {
+  color: $green;
+  &:hover {
+    color: $green;
   }
 }

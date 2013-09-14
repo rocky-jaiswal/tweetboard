@@ -1,12 +1,12 @@
-define ["jquery", "backbone", "app/views/home", "app/views/login"], ($, Backbone, HomeView, LoginView) ->
+define ["jquery", "backbone", "app/views/login", "app/views/home"], ($, Backbone, LoginView, HomeView) ->
   'use strict'
 
   class Init
     
     @init: ->
       mapping =
-        "#login-view" : LoginView
-        "#home-view"  : HomeView
+        "#login-view"   : LoginView
+        "#home-view"    : HomeView
 
       initialized = {}
       

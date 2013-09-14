@@ -7,11 +7,15 @@
         </li>
       </ul>
       <ul class="right">
-        <% if user_signed_in? %>
-          <li class="has-form">
+        <li class="has-form">
+          <% if user_signed_in? %>
             <a class="button" href="/users/sign_out">Logout</a>
-          </li>
-        <% end %>
+          <% else %>
+            <% if !current_page?(root_path) %>
+              <a class="button" href="/">Back</a>
+            <% end %>
+          <% end %>
+        </li>
       </ul>
     </nav>
   </div>
