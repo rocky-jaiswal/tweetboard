@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   end
   
   def home
+    @favorites = []
+    @favorites = current_user.favorites if current_user
   end
 
 end

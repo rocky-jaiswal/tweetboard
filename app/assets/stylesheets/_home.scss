@@ -16,7 +16,18 @@ span.label {
   height: 2.0em;
 }
 
+#added-users {
+  a.remove-user {
+    color: white;
+    margin-left: 5px;
+  }
+}
+
 .tweet {
+  height: 270px;
+  .panel {
+    height: 245px;
+  }
   p {
     font-size: 0.8em;
   }

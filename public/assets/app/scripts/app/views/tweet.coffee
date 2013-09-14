@@ -6,7 +6,7 @@ define ["jquery", "underscore", "backbone", "handlebars", "text!../templates/twe
     template: Handlebars.compile(tweetTemplate)
 
     initialize: ->
-
+      
     
     render: ->
       $(@el).html(@template(tweets: @model))

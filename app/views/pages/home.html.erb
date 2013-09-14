@@ -13,6 +13,9 @@
   </div>
   <div class="row">
     <div id="added-users" class="large-12 small-12 columns">
+      <% @favorites.each do |fav| %>
+        <span class="success label"><%= fav.user_name %><a href="#" data-user-name="<%= fav.user_name %>" class="remove-user">&times;</a></span>
+      <% end %>
     </div>
   </div>
   <div class="row">
