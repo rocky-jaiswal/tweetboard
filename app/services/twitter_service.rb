@@ -10,7 +10,15 @@ class TwitterService
   end
 
   def get_last_three_tweets(user)
-    @client.user_timeline(user, {count: 3})
+    cleanup_tweets(@client.user_timeline(user, {count: 3}))
+  end
+
+  def cleanup_tweets(tws)
+    tweets = []
+    tws.map do |tw| 
+      tweets << {text: tw.text, profile_image_url: tw.user.profile_image_url.to_s, user_name: tw.user.name, screen_name: tw.user.screen_name}
+    end
+    tweets
   end
 
 end
