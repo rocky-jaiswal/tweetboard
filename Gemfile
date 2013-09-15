@@ -10,6 +10,15 @@ gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
 gem 'sqlite3'
 gem 'thin'
 
+platform :jruby do
+  gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'jruby-openssl'
+end
+
+platform :ruby do
+  gem 'pg'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'compass-rails'
