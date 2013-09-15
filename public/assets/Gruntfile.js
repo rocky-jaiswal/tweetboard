@@ -242,6 +242,17 @@ module.exports = function (grunt) {
                         '**/*.hbs'
                     ]
                 }]
+            },
+            font: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>/font',
+                    dest: '<%= yeoman.app %>/../dist/font',
+                    src: [
+                        '**/*.*'
+                    ]
+                }]
             }
         },
         bower: {
@@ -311,6 +322,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'copy:comps',
         'copy:temps',
+        'copy:font',
         'requirejs',
         'imagemin',
         'concat',
