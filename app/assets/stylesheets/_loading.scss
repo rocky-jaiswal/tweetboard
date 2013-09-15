@@ -22,7 +22,6 @@
   display: inline-block;
   color: lighten($bright, 20);
   font-size: 32px;
-  margin-left: 10px;
   i {
     display: inline-block;
     @include animation(spin 1.2s infinite);

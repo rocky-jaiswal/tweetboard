@@ -9,6 +9,19 @@ class TwitterService
     end
   end
 
+  def get_tweets_for_users(users, unfavorited, current_user)
+    tweets = []
+    users = users - unfavorited
+    
+    current_user.delete_favorites(unfavorited) if current_user
+    users = current_user.add_favorites(users) if current_user
+
+    users.each do |user|
+      tweets << get_last_three_tweets(user)
+    end
+    tweets
+  end
+
   def get_last_three_tweets(user)
     cleanup_tweets(@client.user_timeline(user, {count: 3}))
   end
