@@ -38,6 +38,10 @@ module.exports = function (grunt) {
                 files: ['test/spec/**/*.coffee'],
                 tasks: ['coffee:test']
             },
+            compass: {
+                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                tasks: ['compass']
+            },
             handlebars: {
                 files: [
                     '<%= yeoman.app %>/scripts/app/templates/*.hbs'
@@ -132,6 +136,23 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        compass: {
+            options: {
+                sassDir: '<%= yeoman.app %>/styles',
+                cssDir: '.tmp/styles',
+                imagesDir: '<%= yeoman.app %>/images',
+                javascriptsDir: '<%= yeoman.app %>/scripts',
+                fontsDir: '<%= yeoman.app %>/styles/fonts',
+                importPath: '<%= yeoman.app %>/bower_components',
+                relativeAssets: true
+            },
+            dist: {},
+            server: {
+                options: {
+                    debugInfo: true
+                }
+            }
+        },
         requirejs: {
             dist: {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
@@ -174,6 +195,16 @@ module.exports = function (grunt) {
                     src: '{,*/}*.{png,jpg,jpeg}',
                     dest: '<%= yeoman.dist %>/images'
                 }]
+            }
+        },
+        cssmin: {
+            dist: {
+                files: {
+                    '<%= yeoman.dist %>/styles/main.css': [
+                        '.tmp/styles/{,*/}*.css',
+                        '<%= yeoman.app %>/styles/{,*/}*.css'
+                    ]
+                }
             }
         },
         copy: {
@@ -255,6 +286,7 @@ module.exports = function (grunt) {
             'clean:server',
             'coffee:dist',
             'createDefaultTemplate',
+            'compass:server',
             'copy:comps',
             'copy:temps',
             'watch'
@@ -275,12 +307,14 @@ module.exports = function (grunt) {
         'coffee',
         'createDefaultTemplate',
         'handlebars',
+        'compass:dist',
         'useminPrepare',
         'copy:comps',
         'copy:temps',
         'requirejs',
         'imagemin',
         'concat',
+        'cssmin',
         'uglify',
         'copy',
         'rev',

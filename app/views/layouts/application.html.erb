@@ -6,11 +6,14 @@
   <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= content_for?(:title) ? yield(:title) : "TweetBoard" %></title>
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/custom.modernizr" %>
+    <% if ENV['RAILS_ENV'] == "development" %>
+      <link href="/assets/.tmp/styles/application.css" media="screen" rel="stylesheet" type="text/css">
+    <% end %>
+    <% if ENV['RAILS_ENV'] == "production" %>
+      <link href="/assets/dist/styles/75d983e1.main.css" media="screen" rel="stylesheet" type="text/css">
+    <% end %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -34,6 +37,7 @@
     <% end %>
 
     <% if ENV['RAILS_ENV'] == "production" %>
+      <script src="/assets/dist/scripts/vendor/f7f27360.modernizr.js"></script>
       <script data-main="/assets/dist/scripts/26565da7.main" src="/assets/dist/bower_components/requirejs/require.js"></script>
     <% end %>
   </body>

@@ -2,7 +2,7 @@ set :application, "tweetboard"
 set :repository,  "https://github.com/rocky-jaiswal/tweetboard"
 set :scm, :git
 set :user, "torquebox"
-set :deploy_to, "/opt/torquebox/torquebox"
+set :deploy_to, "/opt/torquebox/tweetboard"
 set :use_sudo, false
 
 role :web, "192.168.1.155"                          # Your HTTP server, Apache/etc

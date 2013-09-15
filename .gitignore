@@ -16,6 +16,8 @@
 
 public/assets/node_modules
 public/assets/.tmp
+public/assets/tmp
+public/assets/.sass-cache
 public/assets/app/bower_components
 
 config/application.yml
