@@ -7,7 +7,6 @@ gem 'simple_form'
 gem 'figaro'
 gem 'multi_json'
 gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
-gem 'thin'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
@@ -28,6 +27,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'thin'
   gem 'rspec-rails', '~> 2.0'
   gem 'sqlite3'
 end
