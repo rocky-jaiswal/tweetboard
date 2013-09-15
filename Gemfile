@@ -13,7 +13,7 @@ platform :jruby do
 end
 
 platform :ruby do
-  gem 'pg'
+  gem 'sqlite3'
 end
 
 group :assets do
