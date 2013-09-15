@@ -7,7 +7,6 @@ gem 'simple_form'
 gem 'figaro'
 gem 'multi_json'
 gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
-gem 'sqlite3'
 gem 'thin'
 
 platform :jruby do
@@ -30,6 +29,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'sqlite3'
 end
 
 group :development do
