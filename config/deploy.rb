@@ -20,13 +20,13 @@ set :app_context, "/"
 namespace :torquebox do
   task :deploy do
     puts "==================Stop and Undeploy======================"
-    run  "cap deploy:torquebox:stop"
+    run  "/opt/torquebox/current/jruby/bin/cap deploy:torquebox:stop"
     run  "rm -rf #{torquebox_home}/standalone/deployments/*"
     puts "==================Bundle======================"
     run  "cd #{deploy_to}/current && bundle install --deployment --without development test"
     puts "==================Deploy and Run======================"
     run  "cd #{deploy_to}/current && torquebox deploy"
-    run  "cd #{deploy_to}/current && cap deploy:torquebox:start"
+    run  "cd #{deploy_to}/current && /opt/torquebox/current/jruby/bin/cap deploy:torquebox:start"
   end
 end
 
