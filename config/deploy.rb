@@ -20,10 +20,14 @@ namespace :torquebox do
     run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && bundle install --deployment --without development test"
     puts "==================Deploy and Run======================"
     run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && torquebox deploy"
-    run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && torquebox run"
+    run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && nohup torquebox run &"
+  end
+  task :symlink_shared do
+    run "ln -s #{shared_path}/application.yml #{deploy_to}/current/config/application.yml"
   end
 end
 
-after "deploy", "torquebox:deploy"
+after "deploy", "torquebox:symlink_shared"
+after "torquebox:symlink_shared", "torquebox:deploy"
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
