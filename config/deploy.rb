@@ -15,7 +15,7 @@ namespace :torquebox do
   task :deploy do
     puts "==================Stop and Undeploy======================"
     run  "export PATH=#{torquebox_home}/jruby/bin:$PATH && killall java; true"
-    run  "rm -rf #{torquebox_home}/standalone/deployments/*"
+    run  "rm -rf #{torquebox_home}/jboss/standalone/deployments/*"
     puts "==================Bundle======================"
     run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && bundle install --deployment --without development test"
     puts "==================Deploy and Run======================"
