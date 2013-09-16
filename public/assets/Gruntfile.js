@@ -253,6 +253,17 @@ module.exports = function (grunt) {
                         '**/*.*'
                     ]
                 }]
+            },
+            fontDev: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>/font',
+                    dest: '<%= yeoman.app %>/../.tmp/font',
+                    src: [
+                        '**/*.*'
+                    ]
+                }]
             }
         },
         bower: {
@@ -300,6 +311,7 @@ module.exports = function (grunt) {
             'compass:server',
             'copy:comps',
             'copy:temps',
+            'copy:fontDev',
             'watch'
         ]);
     });
