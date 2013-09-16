@@ -10,7 +10,6 @@ gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
-  gem 'torquebox-capistrano-support'
 end
 
 platform :ruby do
