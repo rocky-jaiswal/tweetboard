@@ -1,5 +1,3 @@
-require 'torquebox-capistrano-support'
-
 set :application, "tweetboard"
 set :repository,  "https://github.com/rocky-jaiswal/tweetboard"
 set :scm, :git
@@ -20,13 +18,13 @@ set :app_context, "/"
 namespace :torquebox do
   task :deploy do
     puts "==================Stop and Undeploy======================"
-    run  "export PATH=/opt/torquebox/current/jruby/bin:$PATH && cap deploy:torquebox:stop"
+    run  "export PATH=/opt/torquebox/current/jruby/bin:$PATH && killall java; true"
     run  "rm -rf #{torquebox_home}/standalone/deployments/*"
     puts "==================Bundle======================"
-    run  "cd #{deploy_to}/current && bundle install --deployment --without development test"
+    run  "cd #{deploy_to}/current && export PATH=/opt/torquebox/current/jruby/bin:$PATH && export TORQUEBOX_HOME=/opt/torquebox/current && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && bundle install --deployment --without development test"
     puts "==================Deploy and Run======================"
-    run  "cd #{deploy_to}/current && torquebox deploy"
-    run  "cd #{deploy_to}/current && export PATH=/opt/torquebox/current/jruby/bin:$PATH && cap deploy:torquebox:start"
+    run  "cd #{deploy_to}/current && export PATH=/opt/torquebox/current/jruby/bin:$PATH && export TORQUEBOX_HOME=/opt/torquebox/current && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && torquebox deploy"
+    run  "cd #{deploy_to}/current && export PATH=/opt/torquebox/current/jruby/bin:$PATH && export TORQUEBOX_HOME=/opt/torquebox/current && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && torquebox run"
   end
 end
 
