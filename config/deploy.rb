@@ -6,9 +6,9 @@ set :deploy_to, "/opt/torquebox/tweetboard"
 set :torquebox_home, "/opt/torquebox/current"
 set :use_sudo, false
 
-role :web, "192.168.1.155"                          # Your HTTP server, Apache/etc
-role :app, "192.168.1.155"                          # This may be the same as your `Web` server
-role :db,  "192.168.1.155", :primary => true        # This is where Rails migrations will run
+role :web, "tweetboard.in"                          # Your HTTP server, Apache/etc
+role :app, "tweetboard.in"                          # This may be the same as your `Web` server
+role :db,  "tweetboard.in", :primary => true        # This is where Rails migrations will run
 
 
 namespace :torquebox do
