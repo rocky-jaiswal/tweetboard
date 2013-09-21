@@ -6,6 +6,7 @@ set :scm, :git
 set :user, "torquebox"
 set :deploy_to, "/opt/torquebox/tweetboard"
 set :torquebox_home, "/opt/torquebox/current"
+set :use_sudo, false
 
 role :web, "tweetboard.in"                          # Your HTTP server, Apache/etc
 role :app, "tweetboard.in"                          # This may be the same as your `Web` server
