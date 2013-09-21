@@ -14,7 +14,7 @@ role :db,  "tweetboard.in", :primary => true        # This is where Rails migrat
 namespace :torquebox do
   task :deploy do
     puts "==================Stop and Undeploy======================"
-    run  "export PATH=#{torquebox_home}/jruby/bin:$PATH && killall java; true"
+    run  "sudo service torquebox stop; true"
     run  "rm -rf #{torquebox_home}/jboss/standalone/deployments/*"
     puts "==================Bundle======================"
     run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && bundle install --deployment --without development test"
@@ -22,7 +22,7 @@ namespace :torquebox do
     run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && RAILS_ENV=production bundle exec rake db:migrate"
     puts "==================Deploy and Run======================"
     run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && torquebox deploy"
-    run  "cd #{deploy_to}/current && export PATH=#{torquebox_home}/jruby/bin:$PATH && export TORQUEBOX_HOME=#{torquebox_home} && export JBOSS_HOME=$TORQUEBOX_HOME/jboss && export JRUBY_HOME=$TORQUEBOX_HOME/jruby && nohup torquebox run &"
+    run  "sudo service torquebox start"
   end
   task :symlink_shared do
     run "ln -s #{shared_path}/application.yml #{deploy_to}/current/config/application.yml"
