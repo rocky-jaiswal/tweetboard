@@ -28,8 +28,8 @@ class TwitterService
 
   def cleanup_tweets(tws)
     tweets = []
-    tws.map do |tw| 
-      tweets << {text: tw.text, profile_image_url: tw.user.profile_image_url.to_s, user_name: tw.user.name, screen_name: tw.user.screen_name}
+    tws.map do |tw|
+      tweets << {text: tw.text, profile_image_url: tw.user.profile_image_url_https.to_s, user_name: tw.user.name, screen_name: tw.user.screen_name}
     end
     tweets
   end
