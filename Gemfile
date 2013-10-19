@@ -34,7 +34,7 @@ group :test do
   gem 'launchy'
 end
 
-gem 'capistrano'
+gem 'capistrano', '2.15.4'
 
 # To use debugger
 # gem 'debugger'

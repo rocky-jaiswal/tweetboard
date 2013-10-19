@@ -23,13 +23,26 @@ class TwitterService
   end
 
   def get_last_three_tweets(user)
-    cleanup_tweets(@client.user_timeline(user, {count: 3}))
+    begin
+      cleanup_tweets(@client.user_timeline(user, {count: 3}))
+    rescue Exception => e
+      Rails.logger.error "Error while retrieving tweets for " + user
+      return dummy_tweets(user)
+    end
   end
 
   def cleanup_tweets(tws)
     tweets = []
     tws.map do |tw|
       tweets << {text: tw.text, profile_image_url: tw.user.profile_image_url_https.to_s, user_name: tw.user.name, screen_name: tw.user.screen_name}
+    end
+    tweets
+  end
+
+  def dummy_tweets(user)
+    tweets = []
+    3.times do
+      tweets << {text: "Not Found", profile_image_url: "", user_name: user, screen_name: "Not Found"}
     end
     tweets
   end
