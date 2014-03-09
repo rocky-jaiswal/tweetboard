@@ -10,5 +10,13 @@ test: &test
   pool: 5
   timeout: 5000
 
+production:
+  adapter:  postgresql
+  encoding: unicode
+  database: tweetboard_production
+  pool: 5
+  username: tweetboard_production
+  password:
+
 cucumber:
   <<: *test
