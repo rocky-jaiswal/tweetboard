@@ -25,7 +25,8 @@ class TwitterService
 
   def get_last_three_tweets(user)
     begin
-      cleanup_tweets(@client.user_timeline(user, {count: 3}))
+      tweets = @client.user_timeline(user, {count: 3})
+      cleanup_tweets(tweets)
     rescue Exception => e
       Rails.logger.error "Error while retrieving tweets for " + user
       return dummy_tweets(user)

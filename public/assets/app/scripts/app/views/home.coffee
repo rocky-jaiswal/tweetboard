@@ -30,7 +30,7 @@ define ["jquery", "underscore", "backbone", "app/views/tweet"], ($, _, Backbone,
 
     getTweets: ->
       $(".loading").show()
-      $.get("/user_timeline", {users: JSON.stringify(@users), unfavorited: JSON.stringify(@unfavorited)}, @handleSuccess)
+      $.get("/tweets", {users: JSON.stringify(@users), unfavorited: JSON.stringify(@unfavorited)}, @handleSuccess)
 
     handleSuccess: (data) =>
       tweetView = new TweetView({el: "#tweet-view", model: data})

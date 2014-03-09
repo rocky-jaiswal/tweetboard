@@ -4,7 +4,7 @@ TweetBoard::Application.routes.draw do
 
   root :to => 'pages#login'
   get 'home' => 'pages#home', :as => 'home'
-  get 'user_timeline' => 'tweets#index', :as => 'user_timeline'
+  get 'tweets' => 'tweets#index', :as => 'tweets'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
