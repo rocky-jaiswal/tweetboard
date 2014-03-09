@@ -1,8 +1,8 @@
 require 'multi_json'
 
-class TweetController < ApplicationController
+class TweetsController < ApplicationController
 
-  def user_timeline
+  def index
     tw_service = TwitterService.new(current_user)
     users = MultiJson.load(params[:users])
     unfavorited = MultiJson.load(params[:unfavorited])
