@@ -2,20 +2,21 @@ module Favoritism
   extend ActiveSupport::Concern
 
   def add_favorites(user_names)
-    new_favs = user_names.each do |name|
-      f = Favorite.new({user_name: name})
-      self.favorites << f
-      self.save
+    if !user_names.nil? && !user_names.empty?
+      existing_favs = self.favorites.map(&:user_name)
+      user_names.uniq.each do |name|
+        unless existing_favs.include?(name)
+          self.favorites << Favorite.new({user_name: name})
+          self.save
+        end
+      end
     end
-    User.find(self.id).favorites.map{|f| f.user_name}
+    self.favorites.reload
   end
 
   def delete_favorites(user_names)
-    return nil if user_names.nil? || user_names.empty?
-    user_names.each do |name|
-      f = self.favorites.where(:user_name => name).first
-      f.delete if f
-    end
+    self.favorites.where(user_name: user_names).destroy_all if !user_names.nil? && !user_names.empty?
+    self.favorites.reload
   end
 
 end

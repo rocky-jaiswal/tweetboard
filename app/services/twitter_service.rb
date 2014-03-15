@@ -1,7 +1,6 @@
 class TwitterService
 
-  def initialize(loggedin_user)
-    @loggedin_user = loggedin_user
+  def initialize
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = Figaro.env.tw_c_key
       config.consumer_secret     = Figaro.env.tw_c_secret
@@ -10,17 +9,10 @@ class TwitterService
     end
   end
 
-  def get_tweets_for_users(users, unfavorited)
-    tweets = []
-    
-    favs = users - unfavorited
-    favs = @loggedin_user.delete_favorites(unfavorited) if @loggedin_user
-    favs = @loggedin_user.add_favorites(users) if @loggedin_user
-
-    favs.each do |fav|
-      tweets << get_last_three_tweets(fav)
+  def get_tweets(handles)
+    handles.map do |user|
+      get_last_three_tweets(user)
     end
-    tweets
   end
 
   def get_last_three_tweets(user)

@@ -3,12 +3,12 @@ require 'multi_json'
 class TweetsController < ApplicationController
 
   def index
-    tw_service = TwitterService.new(current_user)
-    users = MultiJson.load(params[:users])
-    unfavorited = MultiJson.load(params[:unfavorited])
-    tweets = tw_service.get_tweets_for_users(users, unfavorited)
-
+    user_service    = UserService.new(current_user)
+    twitter_service = TwitterService.new
+    favs = user_service.update_favorites(MultiJson.load(params[:users]), 
+                                         MultiJson.load(params[:unfavorited]))
+    tweets = twitter_service.get_tweets(favs.map(&:user_name))
     render :json => tweets.flatten.to_json
   end
-  
+
 end
