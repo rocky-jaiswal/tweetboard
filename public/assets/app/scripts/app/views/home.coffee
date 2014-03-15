@@ -10,13 +10,13 @@ define ["jquery", "underscore", "backbone", "app/views/tweet"], ($, _, Backbone,
 
     initialize: ->
       $(".loading").hide()
-      @users = []
+      @favorited = []
       @unfavorited = []
 
     addUser: ->
       term = $("#user-name").val()
       $("#added-users").append(@getTempl(term)) if term and term.length > 0
-      @users.push term if term and term.length > 0
+      @favorited.push term if term and term.length > 0
       $("#user-name").val("")
       $("#user-name").focus()
 
@@ -30,7 +30,7 @@ define ["jquery", "underscore", "backbone", "app/views/tweet"], ($, _, Backbone,
 
     getTweets: ->
       $(".loading").show()
-      $.get("/tweets", {users: JSON.stringify(@users), unfavorited: JSON.stringify(@unfavorited)}, @handleSuccess)
+      $.get("/tweets", {favorited: JSON.stringify(@favorited), unfavorited: JSON.stringify(@unfavorited)}, @handleSuccess)
 
     handleSuccess: (data) =>
       tweetView = new TweetView({el: "#tweet-view", model: data})
