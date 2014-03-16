@@ -1,6 +1,6 @@
 define ["jquery", "underscore", "backbone", "app/views/tweet"], ($, _, Backbone, TweetView) ->
   'use strict'
-  
+
   class HomeView extends Backbone.View
 
     events:
@@ -33,7 +33,10 @@ define ["jquery", "underscore", "backbone", "app/views/tweet"], ($, _, Backbone,
       $.get("/tweets", {favorited: JSON.stringify(@favorited), unfavorited: JSON.stringify(@unfavorited)}, @handleSuccess)
 
     handleSuccess: (data) =>
-      tweetView = new TweetView({el: "#tweet-view", model: data})
-      tweetView.render()
+      @favorited = []
+      @unfavorited = []
+      @tweetView = @tweetView || new TweetView({el: "#tweet-view"})
+      @tweetView.model = data
+      @tweetView.render()
       $(".loading").hide()
 
